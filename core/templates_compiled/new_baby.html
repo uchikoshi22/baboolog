@@ -1,0 +1,59 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/new_baby.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_base.html', '/new_baby.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_form = context.resolve('form')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  <h3>\u8d64\u3061\u3083\u3093\u306e\u767b\u9332</h3>\n  '
+    def macro():
+        t_2 = []
+        l_today = context.resolve('today')
+        l_form = context.resolve('form')
+        pass
+        t_2.extend((
+            u'\n  <div class="fieldWrapper">\n  <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'name'), 'label'), class_='Name'))), 
+            u'</p>\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'name')))), 
+            u'</p>\n  </div>\n  <div class="fieldWrapper">\n  <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'nickname'), 'label'), class_='Nickname'))), 
+            u'</p>\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'nickname')))), 
+            u'</p>\n  </div>\n  <p>\u8d64\u3061\u3083\u3093\u306f\u7537\u306e\u5b50\u3067\u3059\u304b\uff1f\u5973\u306e\u5b50\u3067\u3059\u304b\uff1f</p>\n  <p>\n    <input type="radio" name="gender" value="0" checked >\u7537\u306e\u5b50&nbsp;&nbsp;\n    <input type="radio" name="gender" value="1" />\u5973\u306e\u5b50\n  </p>\n  <div class="fieldWrapper">\n  <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'birthday'), 'label'), class_='Birthday'))), 
+            u'</p>\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'birthday'), value_=l_today))), 
+            u'</p>\n  </div>\n  <div class="fieldWrapper">\n  <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'height'), 'label'), class_='Height'))), 
+            u'</p>\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'height')))), 
+            u' cm</p>\n  </div>\n  <div class="fieldWrapper">\n  <p>', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'weight'), 'label'), class_='Weight'))), 
+            u'</p>\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'weight')))), 
+            u' g</p>\n  </div>\n  <div class="fieldWrapper">\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'is_primary')))), 
+            u'\n  ', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'is_primary'), 'label'), class_='IsPrimary'))), 
+            u'</p>\n  </div>\n  <br />\n  ', 
+            escape(t_1(context.call(environment.getattr(l_form, 'default_actions'), label=u'\u8d64\u3061\u3083\u3093\u3092\u767b\u9332\u3059\u308b'))), 
+            u'\n  ', 
+        ))
+        return Markup(concat(t_2))
+    caller = Macro(environment, macro, None, (), (), False, False, False)
+    yield context.call(l_form, caller=caller)
+    yield u'\n'
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&4=19&6=26&7=28&10=30&11=32&19=34&20=36&23=38&24=40&27=42&28=44&31=46&32=48&35=50&4=55&36=56'

@@ -1,0 +1,25 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/_baboo.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_base.html', '/_baboo.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_submenu(context, environment=environment):
+    l_baby = context.resolve('baby')
+    if 0: yield None
+    yield u'\n  <h3>%s\u306e\u3070\u3076\u30fc\u65e5\u8a18</h3>\n  <ul class="submenu">\n    <li class="submenu">\n      <a href="/baboo?key=%s">\u30df\u30eb\u30af\u3068\u304a\u3080\u3064</a>\n    </li>\n    <li class="submenu">\n      <a href="/comment?key=%s">\u30d1\u30d1/\u30de\u30de\u306e\u30b3\u30e1\u30f3\u30c8</a>\n    </li>\n    <li class="submenu">\n      <a href="#">\u9069\u671f\u691c\u8a3a(\u8eab\u9577\u30fb\u4f53\u91cd)</a>\n    </li>\n    <li class="submenu">\n      <a href="/diary?key=%s">\u6210\u9577\u8a18\u9332</a>\n    </li>\n  </ul>\n' % (
+        escape(environment.getattr(l_baby, 'nickname')), 
+        escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+        escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+        escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+    )
+
+blocks = {'submenu': block_submenu}
+debug_info = '1=8&2=14&3=18&6=19&9=20&15=21'

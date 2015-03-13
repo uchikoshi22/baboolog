@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+{% block content %}
+  <h3>赤ちゃんの登録</h3>
+  {% call form() %}
+  <div class="fieldWrapper">
+  <p>{{ form['name'].label(class_="Name")|safe }}</p>
+  <p>{{ form['name']()|safe() }}</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['nickname'].label(class_="Nickname")|safe }}</p>
+  <p>{{ form['nickname']()|safe() }}</p>
+  </div>
+  <p>赤ちゃんは男の子ですか？女の子ですか？</p>
+  <p>
+    <input type="radio" name="gender" value="0" checked >男の子&nbsp;&nbsp;
+    <input type="radio" name="gender" value="1" />女の子
+  </p>
+  <div class="fieldWrapper">
+  <p>{{ form['birthday'].label(class_="Birthday")|safe }}</p>
+  <p>{{ form['birthday'](value_=today)|safe() }}</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['height'].label(class_="Height")|safe }}</p>
+  <p>{{ form['height']()|safe() }} cm</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['weight'].label(class_="Weight")|safe }}</p>
+  <p>{{ form['weight']()|safe() }} g</p>
+  </div>
+  <div class="fieldWrapper">
+  <p>{{ form['is_primary']()|safe() }}
+  {{ form['is_primary'].label(class_="IsPrimary")|safe }}</p>
+  </div>
+  <br />
+  {{ form.default_actions(label="赤ちゃんを登録する")|safe }}
+  {% endcall %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block sidebar %}
+{% endblock sidebar %}
+{% block content %}
+  <h3>ようこそ、ばぶログへ</h3>
+  <a href="{{ create_login_url('/')}}">ログインする</a>
+  <br /><br />
+  <p>本当にぱぶログに登録しますか？</p>
+  <input type="button" value="Googleアカウントで登録する" 
+    onClick="location.href='/register'" />
+  <input type="button" value="登録しない" 
+    onClick="location.href='http://www.google.co.jp'" />
+  <br /><br />
+  <input type="button" value="おじいちゃん・おばあちゃんはこちらから" 
+    onClick="location.href='#'" />
+{% endblock %}

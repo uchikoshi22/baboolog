@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+{% block sidebar %}
+{% endblock sidebar %}
+{% block content %}
+  <h3>ようこそ、ばぶログへ</h3>
+  <a href="/">ログインする</a>
+  <br /><br />
+  <form method="POST" action="/sign_in">
+  <input type="hidden" name="acceptance" value="confirm" />
+  <p>本当にぱぶログに登録しますか？</p>
+  <input type="submit" value="Googleアカウントで登録する" />
+  <input type="button" value="登録しない" 
+    onClick="window.open('http://www.google.co.jp')" />
+  <br /><br />
+  <input type="button" value="おじいちゃん・おばあちゃんはこちらから" 
+    onClick="window.open('#')" />
+  </form>
+{% endblock %}

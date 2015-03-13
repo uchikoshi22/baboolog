@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block content %}
+  {% if role_warning %}
+    <p>お父さんかお父さんか登録をしてください</p>
+    <p><a href="/new_profile">お父さんかお母さんか登録する</a></p>
+  {% endif %}
+  {% if family_warning %}
+    <p>ご家族のアカウント登録をしてください</p>
+    <p><a href="/new_family">家族のアカウントを登録する</a></p>
+  {% endif %}
+  {% if baby_warning %}
+    <p>１人目の赤ちゃんを登録してください</p>
+    <p><a href="/new_baby">赤ちゃんを登録する</a></p>
+  {% endif %}
+{% endblock content %}
+

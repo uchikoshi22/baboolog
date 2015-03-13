@@ -1,0 +1,46 @@
+{% extends "_init.html" %}
+{% block content %}
+  {% if family %}
+    <h3>ご家族のアカウント情報</h3>
+      <p>お父さんのGmailアドレス</p>
+      <p>{{ family.father_email }}</p>
+      <p>お母さんのGmailアドレス</p>
+      <p>{{ family.mother_email }}</p>
+      <p>おじいちゃん・おばあちゃん用のログイン名</p>
+      <p>{{ family.guardian_name }}</p>
+
+  {% else %}
+    <h3>ご家族のアカウント情報を登録</h3>
+    {% call form() %}
+    <div class="fieldWrapper">
+      {% if acount.role == 0 %}
+        <p>お父さんのGmailアドレス</p>
+        <p><input type="email" value="{{ acount.email }}" readonly /></p>
+      {% else %}
+        <p>{{ form['father_email'].label(class_="FatherEmail")|safe }}</p>
+        <p>{{ form['father_email']()|safe() }}</p>
+      {% endif %}
+    </div>
+    <div class="fieldWrapper">
+      {% if acount.role == 1 %}
+        <p>お母さんのGmailアドレス</p>
+        <p><input type="email" value="{{ acount.email }}" readonly /></p>
+      {% else %}
+        <p>{{ form['mother_email'].label(class="MotherEmail")|safe }}</p>
+        <p>{{ form['mother_email']()|safe() }}</p>
+      {% endif %}
+    </div>
+    <div class="fieldWrapper">
+      <p>{{ form['guardian_name'].label(class_="GuardianName")|safe }}</p>
+      <p>{{ form['guardian_name']()|safe() }}</p>
+    </div>
+    <p>おじいちゃん・お祖母ちゃん用のパスワード</p>
+    <p><input type="password" name="password" /><p>
+    <br />
+    <div class="fieldWrapper">
+      {{ form.default_actions(label="アカウント情報を登録する")|safe }}
+    </div>
+    {% endcall %}
+   
+  {% endif %}
+{% endblock %}

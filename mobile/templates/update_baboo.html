@@ -1,0 +1,78 @@
+{% extends "_m_base.html" %}
+{% block content %}
+  <p><b>{{ baby.nickname }}がやったよ！</b></p>
+  {% call form() %}
+  <input type="hidden" name="baby" value="{{ baby.key().id() }}" />
+  <input type="hidden" name="m_user" value="{{ m_user }}" />
+  <input type="hidden" name="m_password" value="{{ m_password }}" />
+  <input type="hidden" name="bid" value="{{ activity.key().id() }}" />
+  <p>★日付</p>
+  <p>{{ form['activity_date'](value_=activity.activity_date)|safe() }}</p>
+  <br />
+  <p>
+    {% if activity.milk_time %}
+      <input type="checkbox" name="is_milk" value="True" checked />&nbsp;ミルク
+    {% else %}
+      <input type="checkbox" name="is_milk" value="True" />&nbsp;ミルク
+    {% endif %}
+  </p>
+  <p>{{ form['milk_time'](value_=milk_time)|safe() }}</p>
+  <p>
+    {% if activity.milk_class == 0 %}
+      <input type="radio" name="milk_class" value="0" checked />おっぱい&nbsp;
+      <input type="radio" name="milk_class" vlaue="1" />ミルク</p>
+    {% elif activity.milk_class == 1 %}
+      <input type="radio" name="milk_class" value="0" />おっぱい&nbsp;
+      <input type="radio" name="milk_class" value="1" checked />ミルク
+    {% else %}
+      <input type="radio" name="milk_class" value="0" />おっぱい&nbsp;
+      <input type="radio" name="milk_class" value="1" />ミルク
+    {% endif %}
+  </p>
+  <p>
+     {{ form['milk_cc'](value_=activity.milk_cc)|safe() }}&nbsp;cc
+  </p>
+  <br />
+  <p>
+    {% if activity.nappy_time %}
+      <input type="checkbox" name="is_nappy" value="True" checked />&nbsp;おむつ&nbsp;
+    {% else %}
+      <input type="checkbox" name="is_nappy" value="True" />&nbsp;おむつ&nbsp;
+    {% endif %}
+  </p>
+  <p>
+    {{ form['nappy_time'](value_=nappy_time)|safe() }}
+  </p>
+  <p>(
+    {% if activity.is_poo_poo %}
+      <input type="checkbox" name="is_poo_poo" checked />うんちしてた&nbsp;)
+    {% else %}
+      <input type="checkbox" anme="is_poo_poo" />うんちしてた&nbsp;)
+    {% endif %}
+  </p>
+  <br />
+  <p>
+    {% if activity.baby_food_time %}
+      <input type="checkbox" name="is_food" value="True" checked/>&nbsp;離乳食&nbsp;
+    {% else %}
+      <input type="checkbox" name="is_food" value="True" />&nbsp;離乳食&nbsp;
+    {% endif %}
+  </p>
+  <p>
+    {{ form['baby_food_time'](value_=baby_food_time)|safe() }}
+  </p>
+  <p>
+    何を食べた？
+  </p>
+  <p>
+    <input type="text" name="ingredients" value="{{ ingredients }}" />
+  </p>
+  <br />
+  <div class="fieldWrapper">
+    {{ form.default_actions(label="記録する")|safe }}
+  </div>
+  {% endcall %}
+  <br />
+<p>※記録したい項目の左の□をクリックしてレ点を付けてください</p>
+<p>※離乳食で食べたものはカンマ(,)区切りで入力してください</p>
+{% endblock content %}

@@ -1,0 +1,26 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/login.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_base.html', '/login.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_create_login_url = context.resolve('create_login_url')
+    if 0: yield None
+    yield u'\n  <h3>\u3088\u3046\u3053\u305d\u3001\u3070\u3076\u30ed\u30b0\u3078</h3>\n  <a href="%s">\u30ed\u30b0\u30a4\u30f3\u3059\u308b</a>\n  <br /><br />\n  <p>\u672c\u5f53\u306b\u3071\u3076\u30ed\u30b0\u306b\u767b\u9332\u3057\u307e\u3059\u304b\uff1f</p>\n  <input type="button" value="Google\u30a2\u30ab\u30a6\u30f3\u30c8\u3067\u767b\u9332\u3059\u308b" \n    onClick="location.href=\'/register\'" />\n  <input type="button" value="\u767b\u9332\u3057\u306a\u3044" \n    onClick="location.href=\'http://www.google.co.jp\'" />\n  <br /><br />\n  <input type="button" value="\u304a\u3058\u3044\u3061\u3083\u3093\u30fb\u304a\u3070\u3042\u3061\u3083\u3093\u306f\u3053\u3061\u3089\u304b\u3089" \n    onClick="location.href=\'#\'" />\n' % (
+        escape(context.call(l_create_login_url, '/')), 
+    )
+
+def block_sidebar(context, environment=environment):
+    if 0: yield None
+    yield u'\n'
+
+blocks = {'content': block_content, 'sidebar': block_sidebar}
+debug_info = '1=8&4=14&6=18&2=21'

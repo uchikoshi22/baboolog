@@ -1,0 +1,58 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>ばぶログ</title>
+  {%- block css %}
+    <link href="stylesheets/base.css" rel="stylesheet" type="text/css" />
+  {% endblock css -%}
+  <script language="javascript" type="text/javascript" />
+  {%- block js %}
+  {% endblock js -%}
+  </script>
+  {%- block additional_headers %}
+  {% endblock additional_headers %}
+  <div id="body">
+  {%- block bodytag %}<body>{% endblock bodytag -%}
+    <div id="header">
+    {% block menu %}
+      <p class="title"><a href="/">ばぶログ</a></p>
+      <ul>
+        <li class="left"><a href="/">HOME</a></li>
+        <li><a href="/baboo">成長記録</a></li>
+        <li><a href="/profile">登録情報</a></li>
+        <li><a href="{{ create_login_url() }}">ログアウト</a></li>
+      </ul>
+    {% endblock menu %}
+    </div> <!-- enddiv header -->
+    <div id="sidebar">
+    {% block sidebar %}
+      <!-- if babies registered, show them, or show link to be done" -->
+    {% if babies_list %}
+      <ul>
+      {% for baby in babies_list %}
+        <li><a href="/baboo?key={{ baby.key().id() }}">{{ baby.nickname }}</a></li>
+      {% endfor %}
+      </ul>
+      <br />
+    {% endif %}
+    <input type="button" value="新しい赤ちゃんを登録" 
+      onClick="location.href='/new_baby'" />
+
+    {% endblock sidebar %}
+    </div> <!--enddiv sidbar -->
+    <div id="submenu">
+      {% block submenu %}
+      {% endblock submenu %}
+    </div> <!-- enddiv submenu -->
+    <div id="content">
+    {% block content %}
+    {% endblock content %}
+    </div> <!--enddiv content-->
+    <div id="footer">
+    {% block footer %} 
+    ばぶログ Ver1 Powered By Google App Engine &copy;2011
+    {% endblock footer %}
+    </div> <!--enddiv footer-->
+  </body>
+  </div> <!-- enddiv body -->
+</html>

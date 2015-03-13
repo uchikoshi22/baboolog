@@ -1,0 +1,20 @@
+{% extends "_m_base.html" %}
+{% block content %}
+  <form method="post" action="/m/login">
+  {% if auth_error %}
+    <p>ログイン名かパスワードが間違えています</p>
+    <br />
+  {% endif %}
+  <p>ユーザ名</p>
+  {% if auth_error %}
+    <p><input type="text" name="m_user" value="{{ m_user }}" /></p>
+  {% else %}
+    <p><input type="text" name="m_user" /></p>
+  {% endif %}
+  <p>パスワード</p>
+  <p><input type="password" name="m_password" /></p>
+  <br />
+  <input type="submit" value="ログイン" />
+  </form>
+  <p>
+{% endblock %}

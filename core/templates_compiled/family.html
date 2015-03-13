@@ -1,0 +1,89 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/family.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_init.html', '/family.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_form = context.resolve('form')
+    l_family = context.resolve('family')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  '
+    if l_family:
+        if 0: yield None
+        yield u'\n    <h3>\u3054\u5bb6\u65cf\u306e\u30a2\u30ab\u30a6\u30f3\u30c8\u60c5\u5831</h3>\n      <p>\u304a\u7236\u3055\u3093\u306eGmail\u30a2\u30c9\u30ec\u30b9</p>\n      <p>%s</p>\n      <p>\u304a\u6bcd\u3055\u3093\u306eGmail\u30a2\u30c9\u30ec\u30b9</p>\n      <p>%s</p>\n      <p>\u304a\u3058\u3044\u3061\u3083\u3093\u30fb\u304a\u3070\u3042\u3061\u3083\u3093\u7528\u306e\u30ed\u30b0\u30a4\u30f3\u540d</p>\n      <p>%s</p>\n\n  ' % (
+            escape(environment.getattr(l_family, 'father_email')), 
+            escape(environment.getattr(l_family, 'mother_email')), 
+            escape(environment.getattr(l_family, 'guardian_name')), 
+        )
+    else:
+        if 0: yield None
+        yield u'\n    <h3>\u3054\u5bb6\u65cf\u306e\u30a2\u30ab\u30a6\u30f3\u30c8\u60c5\u5831\u3092\u767b\u9332</h3>\n    '
+        def macro():
+            t_2 = []
+            l_acount = context.resolve('acount')
+            l_form = context.resolve('form')
+            pass
+            t_2.append(
+                u'\n    <div class="fieldWrapper">\n      ', 
+            )
+            if environment.getattr(l_acount, 'role') == 0:
+                pass
+                t_2.extend((
+                    u'\n        <p>\u304a\u7236\u3055\u3093\u306eGmail\u30a2\u30c9\u30ec\u30b9</p>\n        <p><input type="email" value="', 
+                    escape(environment.getattr(l_acount, 'email')), 
+                    u'" readonly /></p>\n      ', 
+                ))
+            else:
+                pass
+                t_2.extend((
+                    u'\n        <p>', 
+                    escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'father_email'), 'label'), class_='FatherEmail'))), 
+                    u'</p>\n        <p>', 
+                    escape(t_1(context.call(environment.getitem(l_form, 'father_email')))), 
+                    u'</p>\n      ', 
+                ))
+            t_2.append(
+                u'\n    </div>\n    <div class="fieldWrapper">\n      ', 
+            )
+            if environment.getattr(l_acount, 'role') == 1:
+                pass
+                t_2.extend((
+                    u'\n        <p>\u304a\u6bcd\u3055\u3093\u306eGmail\u30a2\u30c9\u30ec\u30b9</p>\n        <p><input type="email" value="', 
+                    escape(environment.getattr(l_acount, 'email')), 
+                    u'" readonly /></p>\n      ', 
+                ))
+            else:
+                pass
+                t_2.extend((
+                    u'\n        <p>', 
+                    escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'mother_email'), 'label'), **{'class': 'MotherEmail', }))), 
+                    u'</p>\n        <p>', 
+                    escape(t_1(context.call(environment.getitem(l_form, 'mother_email')))), 
+                    u'</p>\n      ', 
+                ))
+            t_2.extend((
+                u'\n    </div>\n    <div class="fieldWrapper">\n      <p>', 
+                escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'guardian_name'), 'label'), class_='GuardianName'))), 
+                u'</p>\n      <p>', 
+                escape(t_1(context.call(environment.getitem(l_form, 'guardian_name')))), 
+                u'</p>\n    </div>\n    <p>\u304a\u3058\u3044\u3061\u3083\u3093\u30fb\u304a\u7956\u6bcd\u3061\u3083\u3093\u7528\u306e\u30d1\u30b9\u30ef\u30fc\u30c9</p>\n    <p><input type="password" name="password" /><p>\n    <br />\n    <div class="fieldWrapper">\n      ', 
+                escape(t_1(context.call(environment.getattr(l_form, 'default_actions'), label=u'\u30a2\u30ab\u30a6\u30f3\u30c8\u60c5\u5831\u3092\u767b\u9332\u3059\u308b'))), 
+                u'\n    </div>\n    ', 
+            ))
+            return Markup(concat(t_2))
+        caller = Macro(environment, macro, None, (), (), False, False, False)
+        yield context.call(l_form, caller=caller)
+        yield u'\n   \n  '
+    yield u'\n'
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&3=20&6=23&8=24&10=25&12=29&14=30&16=38&18=42&19=47&20=49&21=51&22=54&25=57&27=61&28=66&29=68&30=70&31=73&34=75&35=77&41=79&14=84&43=85&45=86'

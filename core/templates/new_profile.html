@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+  <form method="POST" action="/new_profile">
+  <p>姓&nbsp;:&nbsp;
+  {% if user.last_name %}
+    {{ user.last_name }}</p>
+  {% else %}
+    未登録</p>
+  {% endif %}
+  <p>名&nbsp;:&nbsp;
+  {% if user.first_name %}
+    {{ user.first_name }}</p>
+  {% else %}
+    未登録
+  {% endif %}
+  <form method="POST" action="new_profile">
+  <p>Gmailアドレス :&nbsp;
+  {{ user.email }}</p>
+  <br />
+  <p>ぱぶログを【&nbsp;
+    <input type="radio" name="f_or_m" value="0" />パパ&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="f_or_m" value="1" checked />ママ
+    &nbsp;&nbsp;】として使う</p>
+  <br />
+  <input type="submit" value="登録して次へ" />
+  </form>
+  <br />
+  <p><注>姓・名、GmailアドレスはGoogleアカウントから自動取得しています。</p>
+{% endblock content %}

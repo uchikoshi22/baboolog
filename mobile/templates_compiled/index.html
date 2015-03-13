@@ -1,0 +1,22 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/index.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_m_base.html', '/index.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_baby = context.resolve('baby')
+    if 0: yield None
+    yield u'\n<p>%s\u306e\u65e5\u8a18</p>\n\n' % (
+        escape(environment.getattr(l_baby, 'nickname')), 
+    )
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&3=18'

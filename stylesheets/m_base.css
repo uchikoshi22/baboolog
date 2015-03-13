@@ -1,0 +1,32 @@
+* { margin: 0; padding: 0; }
+html { height: 100%; }
+body { height: 100%; width: 100% }
+
+body {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: #FF69B4;
+}
+
+#header { 
+    width: 100%; 
+    height: 25px; 
+    background: #ffb6c1;
+    color: #FFFFFF;
+} 
+#footer { 
+    width: 100%; clear: both;
+    text-align: center;
+    font-size: 13px;
+    color: #c0c0c0;
+}
+#footer hr {
+    color: #c0c0c0;
+}

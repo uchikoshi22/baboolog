@@ -1,0 +1,26 @@
+{% extends "_baboo.html" %}
+{% block content %}
+  {% if activities %}
+    {% for activity in activities %}
+      <p>{{ activity.activity_date }}</p>
+      <p>{{ activity.milk_time }} &nbsp; 
+         {% if activity.milk_class == 0 %}
+           おっぱい
+         {% else %}
+           ミルク&nbsp;({{ activity.milk_cc }}&nbsp;cc)</p>
+         {% endif %}
+      <p>{{ activity.nappy_time }} &nbsp;
+           おむつ交換
+         {% if activity.is_poo_poo %}
+           (うんち)
+         {% endif %}
+      <p>{% if activity.baby_food_time %}{{ activity.baby_food_time }} &nbsp;
+         {% if activity.ingredients %}
+           {% for ingredient in activity.ingredients %}{{ ingredient }}{% endfor %}
+         {% endif %}
+         {% endif %}
+      <hr />
+    
+    {% endfor %}
+  {% endif %}
+{% endblock %}

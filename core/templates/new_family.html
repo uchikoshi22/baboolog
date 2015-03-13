@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+  <h3>ご家族のアカウント情報を登録</h3>
+  {% call form() %}
+  <div class="fieldWrapper">
+    {% if acount.role == 0 %}
+      <p>パパのGmailアドレス</p>
+      <p><input type="email" value="{{ user.email }}" readonly /></p>
+    {% else %}
+      <p>{{ form['father_email'].label(class_="FatherEmail")|safe }}</p>
+      <p>{{ form['father_email']()|safe() }}</p>
+    {% endif %}
+  </div>
+  <div class="fieldWrapper">
+    {% if acount.role == 1 %}
+      <p>ママのGmailアドレス</p>
+      <p><input type="email" value="{{ user.email }}" readonly /></p>
+    {% else %}
+      <p>{{ form['mother_email'].label(class="MotherEmail")|safe }}</p>
+      <p>{{ form['mother_email']()|safe() }}</p>
+     {% endif %}
+  </div>
+  <br />
+  <div class="fieldWrapper">
+    {{ form.default_actions(label="アカウント情報を登録する")|safe }}
+  </div>
+  {% endcall %}
+{% endblock %}

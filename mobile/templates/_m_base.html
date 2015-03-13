@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>ばぶログ</title>
+  {%- block css %}
+    <link href="../stylesheets/m_base.css" rel="stylesheet" type="text/css" />
+  {% endblock css -%}
+  {% if encoding_class == "au" %}
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=Shift_JIS">
+  {% else %}
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=UTF-8">
+  {% endif %}
+</head>
+<body>
+<div id="header">
+{% block menu %}
+<h3>ばぶログ</h3>
+{% endblock menu %}
+</div> <!-- enddiv header -->
+<div id="content">
+{% block content %}
+{% endblock %}
+</div> <!-- enddiv content -->
+<div id="submenu">
+{% block submenu %}
+{% if baby %}
+<br />
+<a href="/m/baboo?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}">ミルクとおむつ</a>
+<br />
+<a href="/m/comment?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}">パパ・ママのコメント</a>
+<br />
+<a href="#">定期検診
+<br />
+<a href="/m/diary?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}">{{ baby.nickname }}の日記</a>
+<br />
+<br />
+{% if babies_list %}
+  {% for baby in babies_list %}
+    <p>
+      <a href="/m/?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}">
+        {{ baby.nickname }}の育児記録
+     </a>
+    </p>
+  {% endfor %}
+{% endif %}
+{% endif %}
+<br />
+<a href="/m/logout">ログアウト</a>
+<!--
+{% if not request.user.is_anonymous() %}
+<a href="{{ create_logout_url() }}">ログアウト</a>
+{% endif %}
+-->
+{% endblock submenu %}
+</div> <!-- enddiv submenu -->
+<div id="footer">
+  {% block footer %} 
+  <br />
+  <hr />
+  ばぶログ Powered By <br />Google App Engine &copy;2011
+  {% endblock footer %}
+</div> <!--enddiv footer-->
+</body>
+</html>

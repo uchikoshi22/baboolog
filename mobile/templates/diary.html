@@ -1,0 +1,47 @@
+{% extends "_m_base.html" %}
+{% block content %}
+  <form action="" method="POST">
+  <input type="hidden" name="key" value="{{ baby.key().id() }}" />
+  <input type="hidden" name="m_user" value="{{ m_user }}" />
+  <input type="hidden" name="m_pasword" value="{{ m_password }}" />
+  <p>{{ baby.nickname }}の日記</p>
+　<input type="date" name="view_day" value="{{ today }}" size=10 />の一日を
+  <input type="submit" value="表示" />
+  </form>
+  <br />
+  <p><font color="#ff1493">&hearts;</font> パパからのメッセージ</p>
+  <p><font color="#32cd32">{{ father_message }}</font></p>
+  <p><font color="#ff1493">&hearts;</font> ママからのメッセージ</p>
+  <p><font color="#32cd32">{{ mother_message }}</font></p>
+  <br />
+  {% if activities %}
+    {% for activity in activities %}
+      <p>
+        &nbsp;&nbsp;{{ activity[2] }}
+        {% if activity[0] == "milk" %}
+          {% if activity[4] == 0 %}
+            &nbsp;<a href="/m/update_baboo?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}&bid={{ activity[1] }}">おっぱい</a>
+          {% else %}
+            &nbsp;<a href="/m/update_baboo?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}&bid={{ activity[1] }}">ミルク({{ activity[3] }}cc)</a>
+          {% endif %}
+
+        {% elif activity[0] == "nappy" %}
+          &nbsp;<a href="/m/update_baboo?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}&bid={{ activity[1] }}">おむつ</a>
+          {% if activity[3] %}
+            (うんち)
+          {% endif %}
+
+        {% elif activity[0] == "food" %}
+          &nbsp;<a href="/m/update_baboo?key={{ baby.key().id() }}&m_user={{ m_user }}&m_password={{ m_password }}&bid={{ activity[1] }}">離乳食</a> ▼
+          {% for ingredient in activity[3] %}
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{ ingredient }}
+          {% endfor %}
+        {% endif %}
+        <br />
+    {% endfor %}
+  {% else %}
+    <p>まだ何もとうろくされていません。</p>
+  {% endif %}
+{% endblock content %}

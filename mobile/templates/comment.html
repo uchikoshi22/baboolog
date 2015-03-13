@@ -1,0 +1,22 @@
+{% extends "_m_base.html" %}
+{% block content %}
+  {% call form() %}
+    <input type="hidden" name="key" value="{{ baby.key().id() }}" />
+    <input type="hidden" name="m_user" value="{{ m_user }}" />
+    <input type="hidden" name="m_password" value="{{ m_password }}" />
+    <p>{{ baby.nickname }}へ</p>
+    <p>日付</p>
+    <p>{{ form['date'](value_=today)|safe() }}</p>
+    {% if account.role == 0 %}
+      <p>パパからのコメント</p>
+    {% else %}
+      <p>ママからのコメント</p>
+    {% endif %}
+    <p>{{ form['message'](value_=post_comment.message)|safe() }}</p>
+    <br />
+    <div class="fieldWrapper">
+      {{ form.default_actions(label="コメントを残す")|safe }}
+    </div>
+    <br />
+  {% endcall %}
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block content %}
+  <h3>あなたのプロフィール</h3>
+  <p>姓</p>
+  {% if user.last_name %}
+    <p>{{ user.last_name }}</p>
+  {% endif %}
+  <p>名</p>
+  {% if user.first_name %}
+    <p>{{ user.first_name }}</p>
+  {% endif %}
+  <form method="POST" action="/init_profile">
+  <p>Gmailアドレス</p>
+  <p>{{ user.email }}</p>
+  <p>ばぶログを【&nbsp;
+    <input type="radio" name="f_or_m" value="f">お父さん
+    <input type="radio" name="f_or_m" value="m" checked>お母さん
+    &nbsp;】として使う</p>
+  <br />
+  <input type="submit" value="登録して次へ" />
+  </form>
+  <br />
+  <p><注>
+     姓、名、GmailアドレスはGoogleアカウントから自動取得しています。</p>
+{% endblock %}

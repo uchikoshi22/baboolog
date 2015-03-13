@@ -1,0 +1,94 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/_m_base.html'
+
+def root(context, environment=environment):
+    l_encoding_class = context.resolve('encoding_class')
+    if 0: yield None
+    yield u'<html>\n<head>\n  <title>\u3070\u3076\u30ed\u30b0</title>'
+    for event in context.blocks['css'][0](context):
+        yield event
+    if l_encoding_class == 'au':
+        if 0: yield None
+        yield u'\n    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=Shift_JIS">\n  '
+    else:
+        if 0: yield None
+        yield u'\n    <meta http-equiv="Content-Type" content="application/xhtml+xml;charset=UTF-8">\n  '
+    yield u'\n</head>\n<body>\n<div id="header">\n'
+    for event in context.blocks['menu'][0](context):
+        yield event
+    yield u'\n</div> <!-- enddiv header -->\n<div id="content">\n'
+    for event in context.blocks['content'][0](context):
+        yield event
+    yield u'\n</div> <!-- enddiv content -->\n<div id="submenu">\n'
+    for event in context.blocks['submenu'][0](context):
+        yield event
+    yield u'\n</div> <!-- enddiv submenu -->\n<div id="footer">\n  '
+    for event in context.blocks['footer'][0](context):
+        yield event
+    yield u'\n</div> <!--enddiv footer-->\n</body>\n</html>'
+
+def block_content(context, environment=environment):
+    if 0: yield None
+    yield u'\n'
+
+def block_menu(context, environment=environment):
+    if 0: yield None
+    yield u'\n<h3>\u3070\u3076\u30ed\u30b0</h3>\n'
+
+def block_submenu(context, environment=environment):
+    l_request = context.resolve('request')
+    l_m_user = context.resolve('m_user')
+    l_m_password = context.resolve('m_password')
+    l_create_logout_url = context.resolve('create_logout_url')
+    l_babies_list = context.resolve('babies_list')
+    l_baby = context.resolve('baby')
+    if 0: yield None
+    yield u'\n'
+    if l_baby:
+        if 0: yield None
+        yield u'\n<br />\n<a href="/m/baboo?key=%s&m_user=%s&m_password=%s">\u30df\u30eb\u30af\u3068\u304a\u3080\u3064</a>\n<br />\n<a href="/m/comment?key=%s&m_user=%s&m_password=%s">\u30d1\u30d1\u30fb\u30de\u30de\u306e\u30b3\u30e1\u30f3\u30c8</a>\n<br />\n<a href="#">\u5b9a\u671f\u691c\u8a3a\n<br />\n<a href="/m/diary?key=%s&m_user=%s&m_password=%s">%s\u306e\u65e5\u8a18</a>\n<br />\n<br />\n' % (
+            escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+            escape(l_m_user), 
+            escape(l_m_password), 
+            escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+            escape(l_m_user), 
+            escape(l_m_password), 
+            escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+            escape(l_m_user), 
+            escape(l_m_password), 
+            escape(environment.getattr(l_baby, 'nickname')), 
+        )
+        if l_babies_list:
+            if 0: yield None
+            yield u'\n  '
+            t_1 = l_baby
+            for l_baby in l_babies_list:
+                if 0: yield None
+                yield u'\n    <p>\n      <a href="/m/?key=%s&m_user=%s&m_password=%s">\n        %s\u306e\u80b2\u5150\u8a18\u9332\n     </a>\n    </p>\n  ' % (
+                    escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+                    escape(l_m_user), 
+                    escape(l_m_password), 
+                    escape(environment.getattr(l_baby, 'nickname')), 
+                )
+            l_baby = t_1
+            yield u'\n'
+        yield u'\n'
+    yield u'\n<br />\n<a href="/m/logout">\u30ed\u30b0\u30a2\u30a6\u30c8</a>\n<!--\n'
+    if (not context.call(environment.getattr(environment.getattr(l_request, 'user'), 'is_anonymous'))):
+        if 0: yield None
+        yield u'\n<a href="%s">\u30ed\u30b0\u30a2\u30a6\u30c8</a>\n' % (
+            escape(context.call(l_create_logout_url)), 
+        )
+    yield u'\n-->\n'
+
+def block_css(context, environment=environment):
+    if 0: yield None
+    yield u'\n    <link href="../stylesheets/m_base.css" rel="stylesheet" type="text/css" />\n  '
+
+def block_footer(context, environment=environment):
+    if 0: yield None
+    yield u' \n  <br />\n  <hr />\n  \u3070\u3076\u30ed\u30b0 Powered By <br />Google App Engine &copy;2011\n  '
+
+blocks = {'content': block_content, 'menu': block_menu, 'submenu': block_submenu, 'css': block_css, 'footer': block_footer}
+debug_info = '1=8&4=9&7=11&9=16&11=17&15=18&17=20&20=21&21=23&24=24&53=26&56=27&60=29&20=31&15=35&24=39&25=48&27=51&29=54&33=57&36=62&37=66&39=69&40=72&43=75&44=76&45=77&49=78&50=81&51=83&4=85&56=89'

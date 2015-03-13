@@ -1,0 +1,54 @@
+{% extends "_m_base.html" %}
+{% block content %}
+  <p><b>{{ baby.nickname }}がやったよ！</b></p>
+  {% call form() %}
+  <input type="hidden" name="baby" value="{{ baby.key().id() }}" />
+  <input type="hidden" name="m_user" value="{{ m_user }}" />
+  <input type="hidden" name="m_password" value="{{ m_password }}" />
+  <p>★日付</p>
+  <p>{{ form['activity_date'](value_=today)|safe() }}</p>
+  <br />
+  <p>
+    <input type="checkbox" name="is_milk" value="True" />&nbsp;ミルク
+  </p>
+  <p>{{ form['milk_time'](value_=time_now)|safe() }}</p>
+  <p>
+    <input type="radio" name="milk_class" value="0" checked />おっぱい&nbsp;
+     <input type="radio" name="milk_class" value="1" />ミルク
+  </p>
+  <p>
+     {{ form['milk_cc'](value_=0)|safe() }}&nbsp;cc
+  </p>
+  <br />
+  <p>
+    <input type="checkbox" name="is_nappy" value="True" />&nbsp;おむつ&nbsp;
+  </p>
+  <p>
+    {{ form['nappy_time'](value_=time_now)|safe() }}
+  </p>
+  <p>(
+    {{ form['is_poo_poo']()|safe() }}&nbsp;
+    {{ form['is_poo_poo'].label(class_="IsPooPoo")|safe }}&nbsp;)
+  </p>
+  <br />
+  <p>
+    <input type="checkbox" name="is_food" value="True" />&nbsp;離乳食&nbsp;
+  </p>
+  <p>
+    {{ form['baby_food_time'](value_=time_now)|safe() }}
+  </p>
+  <p>
+    何を食べた？
+  </p>
+  <p>
+    <input type="text" name="ingredients" />
+  </p>
+  <br />
+  <div class="fieldWrapper">
+    {{ form.default_actions(label="記録する")|safe }}
+  </div>
+  {% endcall %}
+  <br />
+<p>※記録したい項目の左の□をクリックしてレ点を付けてください</p>
+<p>※離乳食で食べたものはカンマ(,)区切りで入力してください</p>
+{% endblock content %}

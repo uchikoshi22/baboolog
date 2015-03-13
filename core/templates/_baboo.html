@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+{% block submenu %}
+  <h3>{{ baby.nickname }}のばぶー日記</h3>
+  <ul class="submenu">
+    <li class="submenu">
+      <a href="/baboo?key={{ baby.key().id() }}">ミルクとおむつ</a>
+    </li>
+    <li class="submenu">
+      <a href="/comment?key={{ baby.key().id() }}">パパ/ママのコメント</a>
+    </li>
+    <li class="submenu">
+      <a href="#">適期検診(身長・体重)</a>
+    </li>
+    <li class="submenu">
+      <a href="/diary?key={{ baby.key().id() }}">成長記録</a>
+    </li>
+  </ul>
+{% endblock submenu %}

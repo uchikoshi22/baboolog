@@ -1,0 +1,23 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/logout.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_m_base.html', '/logout.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    if 0: yield None
+    yield u'\n  <p>\u3088\u3046\u3053\u305d\u3001\u3070\u3076\u30ed\u30b0\u3078</p>\n  <br /><br />\n  <p>\u30d1\u30d1\u30fb\u30de\u30de\u306f\u3053\u3061\u3089\u304b\u3089</p>\n<p><a href="/m/login">\u30ed\u30b0\u30a4\u30f3\u3059\u308b</a></p>\n  <br />\n  <p>\u304a\u3058\u3044\u3061\u3083\u3093\u30fb\u304a\u3070\u3042\u3061\u3083\u3093\u306f\u3053\u3061\u3089\u304b\u3089</p>\n  <p><a href="#">\u6210\u9577\u8a18\u9332\u3092\u898b\u308b</a></p>\n  <br />\n  <br />\n  <p>\u3070\u3076\u30ed\u30b0\u3078\u306e\u767b\u9332\u304c\u307e\u3060\u306e\u65b9\u306fPC\u30b5\u30a4\u30c8\u304b\u3089\u767b\u9332\u3057\u3066\u304f\u3060\u3055\u3044</p>\n  <br />\n  <p>\u25bcPC\u30b5\u30a4\u30c8</p>\n    <a href="http://baboo-log.appspot.com">http://baboo-log.appspot.com</a>\n'
+
+def block_submenu(context, environment=environment):
+    if 0: yield None
+    yield u'\n'
+
+blocks = {'content': block_content, 'submenu': block_submenu}
+debug_info = '1=8&2=14&17=18'

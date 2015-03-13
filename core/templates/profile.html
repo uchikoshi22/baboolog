@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+{% block content %}
+  <h4>登録情報</h4>
+  <br />
+  <p>私は</p>
+  {% if account.role == 0 %}
+    <input type="radio" name="role" value="0" checked />パパです。
+    <input type="radio" name="role" value="1" />ママです。
+  {% elif account.role == 1 %}
+    <input type="radio" name="role" value="0" />パパです。
+    <input type="radio" name="role" value="1" checked />ママです。
+  {% else %}
+    <p>パパかママか登録してください</p>
+    <input type="radio" name="role" value="0" />パパです。
+    <input type="radio" name="role" value="1" />ママです。
+  {% endif %}
+
+  <br /><br />
+
+  {% if account.role == 0 %}
+    <p>パパのメールアドレス:&nbsp;
+      <input type="email" name="father_email" value="{{ user.email }}" readonly />
+    </p>
+    <p>ママのメールアドレス:&nbsp;
+      <input type="email" name="mother_email" value="{{ account.family.mother_email }}" />
+  {% else %}
+    <p>パパのメールアドレス:&nbsp;
+      <input type="email" name="father_email" value="{{ account.family.father_email }}" />
+    <p>ママのメールアドレス:&nbsp;
+      <input type="email" name="mother_email" value="{{ user.email }}" readonly />
+    </p>
+  {% endif %}
+
+  <br /><br />
+  <form method="POST" action="/add_guardian">
+  <p>おじいちゃん・おばあちゃん・その他家族のGmailアドレス</p>
+  {% if wrong_email %}
+    <p>ばぶログはGmailでしか使えません。</p>
+    <input type="email" name="guardian_email" value="{{ wrong_email }}" />&nbsp;
+  {% else %}
+    <input type="email" name="guardian_email" />&nbsp;
+  {% endif %}
+  <input type="submit" value="追加" />
+  </form>
+  <p>※ここで登録するメールアドレスの人に日記を公開（リードオンリー）します。</p>
+  <br />
+  {% if account.family.guardian_emails %}
+    {% for guardian_email in account.family.guardian_emails %}
+      <p>
+        <input type="email" name="guardian_email" value="{{ guardian_email }}" />
+     </p>
+    {% endfor %}
+  {% endif %}
+  
+{% endblock content %}

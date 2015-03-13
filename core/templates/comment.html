@@ -1,0 +1,25 @@
+{% extends "_baboo.html" %}
+{% block content %}
+  {% call form() %}
+  {{ baby.nickname }}へ
+  <p>{{ form['date'](value_=today)|safe() }}のコメント</p>
+  <br />
+  <input type="hidden" name="key" value="{{ baby.key().id() }}" />
+  {% if user.role == 0 %}
+    パパのコメント&nbsp;&nbsp;
+    {{ form['message'](value_=post_message.message)|safe() }}
+    <br />
+    ママのコメント&nbsp;&nbsp;
+    <input type="text" value="{{ partner_message }}" readonly />
+  {% else %}
+    パパのコメント&nbsp;&nbsp;
+    <input type="text" value="{{ partner_message }}" readonly />
+    <br />
+    ママのコメント&nbsp;&nbsp;
+    {{ form['message'](value_=post_message)|safe() }}
+  {% endif %}
+  <div class="fieldWrapper">
+  {{ form.default_actions(label="コメントを残す")|safe }}
+  </div>
+  {% endcall %}
+{% endblock %}

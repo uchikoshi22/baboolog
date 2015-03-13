@@ -1,0 +1,61 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/baboo.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_m_base.html', '/baboo.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_baby = context.resolve('baby')
+    l_form = context.resolve('form')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  <p><b>%s\u304c\u3084\u3063\u305f\u3088\uff01</b></p>\n  ' % (
+        escape(environment.getattr(l_baby, 'nickname')), 
+    )
+    def macro():
+        t_2 = []
+        l_form = context.resolve('form')
+        l_time_now = context.resolve('time_now')
+        l_m_user = context.resolve('m_user')
+        l_m_password = context.resolve('m_password')
+        l_today = context.resolve('today')
+        pass
+        t_2.extend((
+            u'\n  <input type="hidden" name="baby" value="', 
+            escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+            u'" />\n  <input type="hidden" name="m_user" value="', 
+            escape(l_m_user), 
+            u'" />\n  <input type="hidden" name="m_password" value="', 
+            escape(l_m_password), 
+            u'" />\n  <p>\u2605\u65e5\u4ed8</p>\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'activity_date'), value_=l_today))), 
+            u'</p>\n  <br />\n  <p>\n    <input type="checkbox" name="is_milk" value="True" />&nbsp;\u30df\u30eb\u30af\n  </p>\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'milk_time'), value_=l_time_now))), 
+            u'</p>\n  <p>\n    <input type="radio" name="milk_class" value="0" checked />\u304a\u3063\u3071\u3044&nbsp;\n     <input type="radio" name="milk_class" value="1" />\u30df\u30eb\u30af\n  </p>\n  <p>\n     ', 
+            escape(t_1(context.call(environment.getitem(l_form, 'milk_cc'), value_=0))), 
+            u'&nbsp;cc\n  </p>\n  <br />\n  <p>\n    <input type="checkbox" name="is_nappy" value="True" />&nbsp;\u304a\u3080\u3064&nbsp;\n  </p>\n  <p>\n    ', 
+            escape(t_1(context.call(environment.getitem(l_form, 'nappy_time'), value_=l_time_now))), 
+            u'\n  </p>\n  <p>(\n    ', 
+            escape(t_1(context.call(environment.getitem(l_form, 'is_poo_poo')))), 
+            u'&nbsp;\n    ', 
+            escape(t_1(context.call(environment.getattr(environment.getitem(l_form, 'is_poo_poo'), 'label'), class_='IsPooPoo'))), 
+            u'&nbsp;)\n  </p>\n  <br />\n  <p>\n    <input type="checkbox" name="is_food" value="True" />&nbsp;\u96e2\u4e73\u98df&nbsp;\n  </p>\n  <p>\n    ', 
+            escape(t_1(context.call(environment.getitem(l_form, 'baby_food_time'), value_=l_time_now))), 
+            u'\n  </p>\n  <p>\n    \u4f55\u3092\u98df\u3079\u305f\uff1f\n  </p>\n  <p>\n    <input type="text" name="ingredients" />\n  </p>\n  <br />\n  <div class="fieldWrapper">\n    ', 
+            escape(t_1(context.call(environment.getattr(l_form, 'default_actions'), label=u'\u8a18\u9332\u3059\u308b'))), 
+            u'\n  </div>\n  ', 
+        ))
+        return Markup(concat(t_2))
+    caller = Macro(environment, macro, None, (), (), False, False, False)
+    yield context.call(l_form, caller=caller)
+    yield u'\n  <br />\n<p>\u203b\u8a18\u9332\u3057\u305f\u3044\u9805\u76ee\u306e\u5de6\u306e\u25a1\u3092\u30af\u30ea\u30c3\u30af\u3057\u3066\u30ec\u70b9\u3092\u4ed8\u3051\u3066\u304f\u3060\u3055\u3044</p>\n<p>\u203b\u96e2\u4e73\u98df\u3067\u98df\u3079\u305f\u3082\u306e\u306f\u30ab\u30f3\u30de(,)\u533a\u5207\u308a\u3067\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044</p>\n'
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&3=20&4=22&5=32&6=34&7=36&9=38&14=40&20=42&27=44&30=46&31=48&38=50&48=52&4=57&50=58'

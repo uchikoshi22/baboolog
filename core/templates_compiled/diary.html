@@ -1,0 +1,63 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/diary.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_baboo.html', '/diary.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_activities = context.resolve('activities')
+    if 0: yield None
+    yield u'\n  '
+    if l_activities:
+        if 0: yield None
+        yield u'\n    '
+        l_activity = missing
+        for l_activity in l_activities:
+            if 0: yield None
+            yield u'\n      <p>%s</p>\n      <p>%s &nbsp; \n         ' % (
+                escape(environment.getattr(l_activity, 'activity_date')), 
+                escape(environment.getattr(l_activity, 'milk_time')), 
+            )
+            if environment.getattr(l_activity, 'milk_class') == 0:
+                if 0: yield None
+                yield u'\n           \u304a\u3063\u3071\u3044\n         '
+            else:
+                if 0: yield None
+                yield u'\n           \u30df\u30eb\u30af&nbsp;(%s&nbsp;cc)</p>\n         ' % (
+                    escape(environment.getattr(l_activity, 'milk_cc')), 
+                )
+            yield u'\n      <p>%s &nbsp;\n           \u304a\u3080\u3064\u4ea4\u63db\n         ' % (
+                escape(environment.getattr(l_activity, 'nappy_time')), 
+            )
+            if environment.getattr(l_activity, 'is_poo_poo'):
+                if 0: yield None
+                yield u'\n           (\u3046\u3093\u3061)\n         '
+            yield u'\n      <p>'
+            if environment.getattr(l_activity, 'baby_food_time'):
+                if 0: yield None
+                yield escape(environment.getattr(l_activity, 'baby_food_time'))
+                yield u' &nbsp;\n         '
+                if environment.getattr(l_activity, 'ingredients'):
+                    if 0: yield None
+                    yield u'\n           '
+                    l_ingredient = missing
+                    for l_ingredient in environment.getattr(l_activity, 'ingredients'):
+                        if 0: yield None
+                        yield escape(l_ingredient)
+                    l_ingredient = missing
+                    yield u'\n         '
+                yield u'\n         '
+            yield u'\n      <hr />\n    \n    '
+        l_activity = missing
+        yield u'\n  '
+    yield u'\n'
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&3=18&4=22&5=25&6=26&7=28&9=33&10=34&11=36&12=37&14=39&16=42&17=43&18=47&19=51&20=56&21=57&24=59&25=60'

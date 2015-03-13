@@ -1,0 +1,66 @@
+from __future__ import division
+from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
+name = '/comment.html'
+
+def root(context, environment=environment):
+    parent_template = None
+    if 0: yield None
+    parent_template = environment.get_template('_baboo.html', '/comment.html')
+    for name, parent_block in parent_template.blocks.iteritems():
+        context.blocks.setdefault(name, []).append(parent_block)
+    for event in parent_template.root_render_func(context):
+        yield event
+
+def block_content(context, environment=environment):
+    l_form = context.resolve('form')
+    t_1 = environment.filters['safe']
+    if 0: yield None
+    yield u'\n  '
+    def macro():
+        t_2 = []
+        l_partner_message = context.resolve('partner_message')
+        l_form = context.resolve('form')
+        l_post_message = context.resolve('post_message')
+        l_user = context.resolve('user')
+        l_baby = context.resolve('baby')
+        l_today = context.resolve('today')
+        pass
+        t_2.extend((
+            u'\n  ', 
+            escape(environment.getattr(l_baby, 'nickname')), 
+            u'\u3078\n  <p>', 
+            escape(t_1(context.call(environment.getitem(l_form, 'date'), value_=l_today))), 
+            u'\u306e\u30b3\u30e1\u30f3\u30c8</p>\n  <br />\n  <input type="hidden" name="key" value="', 
+            escape(context.call(environment.getattr(context.call(environment.getattr(l_baby, 'key')), 'id'))), 
+            u'" />\n  ', 
+        ))
+        if environment.getattr(l_user, 'role') == 0:
+            pass
+            t_2.extend((
+                u'\n    \u30d1\u30d1\u306e\u30b3\u30e1\u30f3\u30c8&nbsp;&nbsp;\n    ', 
+                escape(t_1(context.call(environment.getitem(l_form, 'message'), value_=environment.getattr(l_post_message, 'message')))), 
+                u'\n    <br />\n    \u30de\u30de\u306e\u30b3\u30e1\u30f3\u30c8&nbsp;&nbsp;\n    <input type="text" value="', 
+                escape(l_partner_message), 
+                u'" readonly />\n  ', 
+            ))
+        else:
+            pass
+            t_2.extend((
+                u'\n    \u30d1\u30d1\u306e\u30b3\u30e1\u30f3\u30c8&nbsp;&nbsp;\n    <input type="text" value="', 
+                escape(l_partner_message), 
+                u'" readonly />\n    <br />\n    \u30de\u30de\u306e\u30b3\u30e1\u30f3\u30c8&nbsp;&nbsp;\n    ', 
+                escape(t_1(context.call(environment.getitem(l_form, 'message'), value_=l_post_message))), 
+                u'\n  ', 
+            ))
+        t_2.extend((
+            u'\n  <div class="fieldWrapper">\n  ', 
+            escape(t_1(context.call(environment.getattr(l_form, 'default_actions'), label=u'\u30b3\u30e1\u30f3\u30c8\u3092\u6b8b\u3059'))), 
+            u'\n  </div>\n  ', 
+        ))
+        return Markup(concat(t_2))
+    caller = Macro(environment, macro, None, (), (), False, False, False)
+    yield context.call(l_form, caller=caller)
+    yield u'\n'
+
+blocks = {'content': block_content}
+debug_info = '1=8&2=14&3=19&4=30&5=32&7=34&8=37&10=41&13=43&14=48&16=50&19=52&20=55&22=57&3=62&24=63'

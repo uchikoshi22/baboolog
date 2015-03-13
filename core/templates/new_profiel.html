@@ -1,0 +1,9 @@
+{% extends "_base.html" %}
+{% block content %}
+  <p>姓&nbsp;:&nbsp;
+  {% if user.last_name %}
+    user.last_name }}</p>
+  {% else %}
+    未登録
+  {% endif %}
+{% endblock content %}
